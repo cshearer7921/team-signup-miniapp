@@ -1,0 +1,6 @@
+<view class="page">
+  <view class="card">
+    <view class="title">球场</view>
+    <view class="empty">球场信息将在后续版本开放。</view>
+  </view>
+</view>

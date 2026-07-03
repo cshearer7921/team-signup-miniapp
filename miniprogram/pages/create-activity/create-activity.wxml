@@ -1,0 +1,11 @@
+<view class="page">
+  <view class="card">
+    <view class="title">发起活动/比赛</view>
+    <view class="muted">V1 版本由队长在 Web 管理后台创建活动，创建后队员可在首页报名、请假或待定。</view>
+    <button class="primary" bindtap="copyAdminUrl">复制后台地址</button>
+  </view>
+  <view class="card">
+    <view class="title">后台地址</view>
+    <view class="muted">https://cshearer.bbroot.com/admin-ui</view>
+  </view>
+</view>

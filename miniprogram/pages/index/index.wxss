@@ -1,1 +1,50 @@
+.brand-hero {
+  margin: -24rpx -24rpx 24rpx;
+  padding: 54rpx 30rpx 46rpx;
+  background: linear-gradient(135deg, #ff7a1a 0%, #f53d2d 100%);
+  color: #fff;
+}
 
+.brand-title {
+  font-size: 44rpx;
+  font-weight: 800;
+  margin-bottom: 10rpx;
+}
+
+.brand-subtitle {
+  font-size: 26rpx;
+  opacity: 0.9;
+}
+
+.tabs {
+  display: flex;
+  background: #fff;
+  border-radius: 14rpx;
+  padding: 10rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 6rpx 18rpx rgba(23, 32, 51, 0.08);
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 18rpx 0;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.tab.active {
+  color: #fff;
+  background: #ff6b1a;
+}
+
+.empty-icon {
+  text-align: center;
+  font-size: 72rpx;
+  margin: 20rpx 0;
+}
+
+.center {
+  text-align: center;
+}

@@ -1,13 +1,24 @@
 <view class="page">
+  <view class="brand-hero">
+    <view class="brand-title">云桥FC有球</view>
+    <view class="brand-subtitle">让每一场活动/比赛都有人、有队、有记录</view>
+  </view>
+
+  <view class="tabs">
+    <view class="tab active">我的活动</view>
+  </view>
+
   <view wx:if="{{!token}}" class="card">
     <view class="title">请先登录</view>
     <button class="primary" bindtap="goLogin">去登录</button>
   </view>
 
   <view wx:elif="{{matches.length === 0}}" class="card">
-    <view class="title">暂无可报名比赛</view>
+    <view class="empty-icon">⚽</view>
+    <view class="title center">还没有活动/比赛</view>
     <view class="muted">如果你还未通过入队审核，请先提交申请。</view>
-    <button class="primary" bindtap="goJoin">提交入队申请</button>
+    <button class="primary" bindtap="goCreate">创建活动</button>
+    <button class="plain" bindtap="goJoin">提交入队申请</button>
   </view>
 
   <view wx:for="{{matches}}" wx:key="id" class="card" bindtap="openMatch" data-id="{{item.id}}">

@@ -1,24 +1,39 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/team/team",
+    "pages/create-activity/create-activity",
+    "pages/venue/venue",
     "pages/login/login",
     "pages/match-detail/match-detail",
     "pages/join-request/join-request",
     "pages/profile/profile"
   ],
   "window": {
-    "navigationBarTitleText": "球队报名",
-    "navigationBarBackgroundColor": "#1769e0",
+    "navigationBarTitleText": "云桥FC有球",
+    "navigationBarBackgroundColor": "#ff6b1a",
     "navigationBarTextStyle": "white",
     "backgroundColor": "#f6f7f9"
   },
   "tabBar": {
     "color": "#6b7280",
-    "selectedColor": "#1769e0",
+    "selectedColor": "#ff6b1a",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "比赛"
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/team/team",
+        "text": "球队"
+      },
+      {
+        "pagePath": "pages/create-activity/create-activity",
+        "text": "发起活动"
+      },
+      {
+        "pagePath": "pages/venue/venue",
+        "text": "球场"
       },
       {
         "pagePath": "pages/profile/profile",

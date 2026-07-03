@@ -1,0 +1,11 @@
+<view class="page">
+  <view class="card">
+    <view class="title">云桥FC</view>
+    <view class="muted">这里用于查看球队成员、队内公告和我的入队状态。</view>
+    <button class="primary" bindtap="goJoin">提交入队申请</button>
+  </view>
+  <view class="card">
+    <view class="title">V1 功能</view>
+    <view class="muted">队长在后台审核入队申请后，队员即可参与活动/比赛报名。</view>
+  </view>
+</view>

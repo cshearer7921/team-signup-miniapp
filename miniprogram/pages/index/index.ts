@@ -23,6 +23,9 @@ Page({
   goJoin() {
     wx.navigateTo({ url: "/pages/join-request/join-request" });
   },
+  goCreate() {
+    wx.switchTab({ url: "/pages/create-activity/create-activity" });
+  },
   openMatch(event: WechatMiniprogram.TouchEvent) {
     wx.navigateTo({ url: `/pages/match-detail/match-detail?id=${event.currentTarget.dataset.id}` });
   }

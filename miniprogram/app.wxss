@@ -35,7 +35,7 @@ page {
 }
 
 .primary {
-  background: #1769e0;
+  background: #ff6b1a;
   color: #fff;
 }
 
@@ -58,4 +58,10 @@ textarea {
   border-radius: 8rpx;
   padding: 18rpx;
   margin: 12rpx 0;
+}
+
+.empty {
+  text-align: center;
+  color: #8a93a3;
+  padding: 54rpx 0 28rpx;
 }
