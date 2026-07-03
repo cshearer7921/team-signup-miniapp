@@ -1,6 +1,6 @@
 App<IAppOption>({
   globalData: {
-    apiBaseUrl: "https://你的域名/api",
+    apiBaseUrl: "https://cshearer.bbroot.com/api",
     token: wx.getStorageSync("token") || ""
   }
 });
