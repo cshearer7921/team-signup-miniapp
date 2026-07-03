@@ -9,10 +9,11 @@
 .form-input {
   box-sizing: border-box;
   width: 100%;
-  height: 104rpx;
-  min-height: 104rpx;
-  line-height: normal;
-  padding: 18rpx 22rpx;
+  height: 96rpx;
+  min-height: 96rpx;
+  max-height: 96rpx;
+  line-height: 44rpx;
+  padding: 26rpx 22rpx;
   margin: 0;
   font-size: 32rpx;
   color: #172033;
@@ -38,5 +39,5 @@
 .form-placeholder {
   color: #9aa3af;
   font-size: 32rpx;
-  line-height: normal;
+  line-height: 44rpx;
 }
