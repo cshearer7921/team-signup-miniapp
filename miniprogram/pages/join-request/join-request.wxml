@@ -1,11 +1,16 @@
 <view class="page">
   <view class="card">
     <view class="title">提交入队申请</view>
-    <input placeholder="姓名" value="{{form.name}}" data-field="name" bindinput="onInput" />
-    <input placeholder="手机号" value="{{form.phone}}" data-field="phone" bindinput="onInput" />
-    <input placeholder="位置，如 前锋/中场/后卫/门将" value="{{form.position}}" data-field="position" bindinput="onInput" />
-    <input placeholder="球衣号码" value="{{form.jersey_number}}" data-field="jersey_number" bindinput="onInput" />
-    <textarea placeholder="备注" value="{{form.message}}" data-field="message" bindinput="onInput" />
+    <view class="field-label">姓名</view>
+    <input placeholder="请输入姓名" value="{{form.name}}" data-field="name" bindinput="onInput" />
+    <view class="field-label">手机号</view>
+    <input type="number" placeholder="请输入手机号" value="{{form.phone}}" data-field="phone" bindinput="onInput" />
+    <view class="field-label">场上位置</view>
+    <input placeholder="前锋 / 中场 / 后卫 / 门将" value="{{form.position}}" data-field="position" bindinput="onInput" />
+    <view class="field-label">球衣号码</view>
+    <input type="number" placeholder="请输入球衣号码" value="{{form.jersey_number}}" data-field="jersey_number" bindinput="onInput" />
+    <view class="field-label">备注</view>
+    <textarea placeholder="可填写想说的话" value="{{form.message}}" data-field="message" bindinput="onInput" />
     <button class="primary" bindtap="submit">提交申请</button>
   </view>
 </view>

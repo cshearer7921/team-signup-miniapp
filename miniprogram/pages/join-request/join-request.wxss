@@ -1,1 +1,10 @@
+.field-label {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #172033;
+  margin-top: 18rpx;
+}
 
+textarea {
+  min-height: 180rpx;
+}
