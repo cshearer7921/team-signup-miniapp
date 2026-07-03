@@ -1,0 +1,17 @@
+.env
+*.pyc
+__pycache__/
+.pytest_cache/
+.venv/
+venv/
+node_modules/
+dist/
+coverage/
+*.log
+*.db
+server/.env
+miniprogram/project.private.config.json
+deploy/certs/
+deploy/mysql-data/
+deploy/redis-data/
+backups/

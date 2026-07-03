@@ -1,0 +1,29 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    "pages/match-detail/match-detail",
+    "pages/join-request/join-request",
+    "pages/profile/profile"
+  ],
+  "window": {
+    "navigationBarTitleText": "球队报名",
+    "navigationBarBackgroundColor": "#1769e0",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f6f7f9"
+  },
+  "tabBar": {
+    "color": "#6b7280",
+    "selectedColor": "#1769e0",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "比赛"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的"
+      }
+    ]
+  }
+}

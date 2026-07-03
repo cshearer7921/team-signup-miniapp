@@ -1,0 +1,19 @@
+{
+  "description": "业余球队比赛报名系统",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "postcss": true,
+    "minified": true,
+    "enhance": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "latest",
+  "appid": "touristappid",
+  "projectname": "team-signup-miniapp",
+  "miniprogramRoot": "./",
+  "condition": {}
+}

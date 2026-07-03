@@ -1,0 +1,7 @@
+<view class="page">
+  <view class="card">
+    <view class="title">球队报名</view>
+    <view class="muted">使用微信登录后，提交入队申请，队长审核通过即可报名比赛。</view>
+    <button class="primary" bindtap="login">微信登录</button>
+  </view>
+</view>

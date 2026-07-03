@@ -1,0 +1,22 @@
+<view class="page">
+  <view class="card">
+    <view class="title">{{match.title}}</view>
+    <view class="muted">对手：{{match.opponent || '待定'}}</view>
+    <view class="muted">地点：{{match.location}}</view>
+    <view class="muted">时间：{{match.start_time}}</view>
+    <view class="muted">说明：{{match.description || '无'}}</view>
+  </view>
+  <view class="card">
+    <view class="title">我的状态：{{statusText}}</view>
+    <button class="primary" bindtap="signup" data-status="signed_up">报名</button>
+    <button class="plain" bindtap="signup" data-status="maybe">待定</button>
+    <button class="danger" bindtap="signup" data-status="leave">请假</button>
+  </view>
+  <view class="card">
+    <view class="title">报名名单</view>
+    <view wx:for="{{signups}}" wx:key="user_id" class="row">
+      <text>{{item.player_name}}</text>
+      <text>{{statusMap[item.status]}}</text>
+    </view>
+  </view>
+</view>

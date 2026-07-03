@@ -1,0 +1,24 @@
+<view class="page">
+  <view wx:if="{{!token}}" class="card">
+    <view class="title">请先登录</view>
+    <button class="primary" bindtap="goLogin">去登录</button>
+  </view>
+
+  <view wx:elif="{{matches.length === 0}}" class="card">
+    <view class="title">暂无可报名比赛</view>
+    <view class="muted">如果你还未通过入队审核，请先提交申请。</view>
+    <button class="primary" bindtap="goJoin">提交入队申请</button>
+  </view>
+
+  <view wx:for="{{matches}}" wx:key="id" class="card" bindtap="openMatch" data-id="{{item.id}}">
+    <view class="title">{{item.title}}</view>
+    <view class="muted">对手：{{item.opponent || '待定'}}</view>
+    <view class="muted">地点：{{item.location}}</view>
+    <view class="muted">时间：{{item.start_time}}</view>
+    <view class="row">
+      <text>报名 {{item.signup_counts.signed_up || 0}}</text>
+      <text>请假 {{item.signup_counts.leave || 0}}</text>
+      <text>待定 {{item.signup_counts.maybe || 0}}</text>
+    </view>
+  </view>
+</view>
