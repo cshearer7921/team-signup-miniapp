@@ -5,8 +5,8 @@
   </view>
   <view class="card" wx:else>
     <view class="title">我的状态</view>
-    <view class="muted">审核状态：{{me.member_status || '未申请'}}</view>
-    <view class="muted">角色：{{me.role || '-'}}</view>
+    <view class="muted">审核状态：{{memberStatusText}}</view>
+    <view class="muted">角色：{{roleText}}</view>
     <button class="primary" bindtap="goJoin">入队申请</button>
     <button class="plain" bindtap="logout">退出登录</button>
   </view>

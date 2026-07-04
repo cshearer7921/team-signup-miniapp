@@ -64,7 +64,7 @@ async function loadAll(){ loadJoinRequests(); loadPlayers(); loadMatches(); }
 async function loadJoinRequests(){
   const rows = await (await api("/admin/join-requests")).json();
   document.querySelector("#joinRequests").innerHTML = table(["姓名","电话","位置","号码","状态","操作"], rows.map(r => [
-    r.name,r.phone||"",r.position||"",r.jersey_number||"",r.status,
+    r.name,r.phone||"",r.position||"",r.jersey_number||"",statusText(r.status),
     r.status==="pending" ? `<button onclick="approve(${r.id})">通过</button><button onclick="rejectReq(${r.id})">拒绝</button>` : ""
   ]));
 }
@@ -72,12 +72,12 @@ async function approve(id){ await api(`/admin/join-requests/${id}/approve`, {met
 async function rejectReq(id){ await api(`/admin/join-requests/${id}/reject`, {method:"POST"}); loadAll(); }
 async function loadPlayers(){
   const rows = await (await api("/admin/players")).json();
-  document.querySelector("#players").innerHTML = table(["姓名","电话","位置","号码","启用"], rows.map(r => [r.name,r.phone||"",r.position||"",r.jersey_number||"",r.is_active]));
+  document.querySelector("#players").innerHTML = table(["姓名","电话","位置","号码","启用"], rows.map(r => [r.name,r.phone||"",r.position||"",r.jersey_number||"",r.is_active ? "是" : "否"]));
 }
 async function loadMatches(){
   const rows = await (await api("/admin/matches")).json();
   document.querySelector("#matches").innerHTML = table(["标题","对手","地点","时间","状态","导出"], rows.map(r => [
-    r.title,r.opponent||"",r.location,new Date(r.start_time).toLocaleString(),r.status,
+    r.title,r.opponent||"",r.location,new Date(r.start_time).toLocaleString(),matchStatusText(r.status),
     `<a href="/api/admin/matches/${r.id}/export.csv">CSV</a> <a href="/api/admin/matches/${r.id}/export.xlsx">XLSX</a>`
   ]));
 }
@@ -92,6 +92,12 @@ async function createMatch(){
   loadMatches();
 }
 function val(id){ return document.querySelector("#"+id).value; }
+function statusText(status){
+  return ({pending:"待审核", approved:"已通过", rejected:"已拒绝"})[status] || status || "";
+}
+function matchStatusText(status){
+  return ({open:"开放报名", closed:"已关闭", cancelled:"已取消"})[status] || status || "";
+}
 function table(headers, rows){
   return `<table><thead><tr>${headers.map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${c ?? ""}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
 }

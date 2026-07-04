@@ -13,6 +13,9 @@ from app.schemas import MatchIn, MatchOut
 router = APIRouter(prefix="/admin", tags=["admin"], dependencies=[Depends(get_current_admin)])
 
 
+SIGNUP_STATUS_TEXT = {"signed_up": "报名", "leave": "请假", "maybe": "待定"}
+
+
 def audit(db: Session, admin: AdminUser, action: str, target_type: str, target_id: int | None) -> None:
     db.add(AuditLog(actor_type="admin", actor_id=admin.id, action=action, target_type=target_type, target_id=target_id))
 
@@ -160,7 +163,7 @@ def signup_export_rows(db: Session, match_id: int) -> list[list[str]]:
                 player.name if player else f"用户{signup.user_id}",
                 player.position or "" if player else "",
                 player.jersey_number or "" if player else "",
-                signup.status,
+                SIGNUP_STATUS_TEXT.get(signup.status, signup.status),
                 signup.note or "",
                 signup.updated_at.strftime("%Y-%m-%d %H:%M:%S"),
             ]
