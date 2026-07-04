@@ -1,6 +1,6 @@
 .detail-page {
   min-height: 100vh;
-  background: #f4f4f4;
+  background: #fff5f5;
   padding-bottom: 130rpx;
 }
 
@@ -41,7 +41,7 @@
 }
 
 .side-link {
-  color: #3b6ea8;
+  color: #b42318;
 }
 
 .organizer-row {
@@ -55,7 +55,7 @@
   width: 72rpx;
   height: 72rpx;
   border-radius: 50%;
-  background: linear-gradient(135deg, #8fb4ff, #ff9a76);
+  background: linear-gradient(135deg, #f87171, #b42318);
   color: #fff;
   display: flex;
   align-items: center;
@@ -78,7 +78,7 @@
 }
 
 .stars {
-  color: #ff7a1a;
+  color: #d92d20;
   font-size: 22rpx;
   letter-spacing: 2rpx;
 }
@@ -168,11 +168,11 @@
 }
 
 .member-badge.signed_up {
-  background: #ff6b1a;
+  background: #d92d20;
 }
 
 .member-badge.maybe {
-  background: #f0a202;
+  background: #ef4444;
 }
 
 .member-badge.leave {
@@ -191,7 +191,7 @@
 }
 
 .follow-link {
-  color: #ff6b1a;
+  color: #d92d20;
   white-space: nowrap;
 }
 
@@ -239,9 +239,9 @@
 }
 
 .bottom-button.maybe {
-  background: #ff7a38;
+  background: #b42318;
 }
 
 .bottom-button.signup {
-  background: #ff8756;
+  background: #d92d20;
 }

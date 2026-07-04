@@ -1,6 +1,6 @@
 .create-page {
   min-height: 100vh;
-  background: #f3f3f3;
+  background: #fff5f5;
   padding-bottom: 132rpx;
 }
 
@@ -10,8 +10,8 @@
   align-items: center;
   gap: 14rpx;
   height: 72rpx;
-  color: #5aa82e;
-  background: #e7f6d9;
+  color: #b42318;
+  background: #ffe4e2;
   font-size: 28rpx;
 }
 
@@ -23,7 +23,7 @@
   height: 32rpx;
   border-radius: 50%;
   color: #fff;
-  background: #75bd45;
+  background: #d92d20;
   font-size: 34rpx;
   line-height: 28rpx;
 }
@@ -32,7 +32,7 @@
   height: 230rpx;
   margin: 20rpx 26rpx;
   border-radius: 8rpx;
-  background: linear-gradient(135deg, #d3ee58 0%, #78c91e 100%);
+  background: linear-gradient(135deg, #ef4444 0%, #b42318 100%);
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -75,8 +75,8 @@
   width: 74rpx;
   height: 74rpx;
   border-radius: 8rpx;
-  background: #eeeeee;
-  color: #ff6b1a;
+  background: #fff1f1;
+  color: #d92d20;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -224,7 +224,7 @@
   right: 0;
   bottom: 0;
   padding: 18rpx 26rpx 28rpx;
-  background: rgba(243, 243, 243, 0.96);
+  background: rgba(255, 245, 245, 0.96);
 }
 
 .create-button {
@@ -232,6 +232,6 @@
   line-height: 88rpx;
   border-radius: 44rpx;
   color: #fff;
-  background: linear-gradient(90deg, #ff7a1a 0%, #ff4e2f 100%);
+  background: linear-gradient(90deg, #e03131 0%, #b42318 100%);
   font-size: 32rpx;
 }

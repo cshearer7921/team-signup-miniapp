@@ -25,7 +25,7 @@
   font-size: 30rpx;
   color: #172033;
   background: #fff;
-  border: 1rpx solid #cbd3df;
+  border: 1rpx solid #e7bcbc;
   border-radius: 10rpx;
 }
 
@@ -39,6 +39,6 @@
   font-size: 30rpx;
   color: #172033;
   background: #fff;
-  border: 1rpx solid #cbd3df;
+  border: 1rpx solid #e7bcbc;
   border-radius: 10rpx;
 }

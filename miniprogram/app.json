@@ -11,13 +11,13 @@
   ],
   "window": {
     "navigationBarTitleText": "云桥FC有球",
-    "navigationBarBackgroundColor": "#ff6b1a",
+    "navigationBarBackgroundColor": "#d92d20",
     "navigationBarTextStyle": "white",
-    "backgroundColor": "#f6f7f9"
+    "backgroundColor": "#fff5f5"
   },
   "tabBar": {
     "color": "#6b7280",
-    "selectedColor": "#ff6b1a",
+    "selectedColor": "#d92d20",
     "list": [
       {
         "pagePath": "pages/index/index",

@@ -1,7 +1,7 @@
 .brand-hero {
   margin: -24rpx -24rpx 24rpx;
   padding: 54rpx 30rpx 46rpx;
-  background: linear-gradient(135deg, #ff7a1a 0%, #f53d2d 100%);
+  background: linear-gradient(135deg, #e03131 0%, #b42318 100%);
   color: #fff;
 }
 
@@ -36,7 +36,7 @@
 
 .tab.active {
   color: #fff;
-  background: #ff6b1a;
+  background: #d92d20;
 }
 
 .empty-icon {
