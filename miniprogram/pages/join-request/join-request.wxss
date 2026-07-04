@@ -16,11 +16,11 @@
 .form-input {
   box-sizing: border-box;
   width: 100%;
-  height: 3.6em;
-  min-height: 122rpx;
-  max-height: 122rpx;
+  height: 84rpx;
+  min-height: 84rpx;
+  max-height: 84rpx;
   line-height: 1.5;
-  padding: 24rpx 22rpx;
+  padding: 18rpx 22rpx;
   margin: 0;
   font-size: 30rpx;
   color: #172033;
