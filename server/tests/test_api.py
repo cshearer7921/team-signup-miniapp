@@ -8,6 +8,7 @@ os.environ.setdefault("WECHAT_MOCK_LOGIN", "true")
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from app.main import app
+from app.services.matches import as_app_time, current_app_time
 
 
 def test_health():
@@ -85,7 +86,7 @@ def test_match_auto_finished_after_two_hours():
         request_id = next(item["id"] for item in pending if item["name"] == "球员B")
         client.post(f"/api/admin/join-requests/{request_id}/approve", headers=admin_headers)
 
-        old_start_time = (datetime.utcnow() - timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%S")
+        old_start_time = (current_app_time() - timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%S")
         created = client.post(
             "/api/admin/matches",
             json={
@@ -109,6 +110,11 @@ def test_match_auto_finished_after_two_hours():
             headers=headers,
         )
         assert signup.status_code == 400
+
+
+def test_timezone_aware_match_time_is_normalized_to_beijing_time():
+    utc_time = datetime.fromisoformat("2026-07-04T06:00:00+00:00")
+    assert as_app_time(utc_time) == datetime(2026, 7, 4, 14, 0, 0)
 
 
 def test_approved_member_can_create_match_from_miniapp():

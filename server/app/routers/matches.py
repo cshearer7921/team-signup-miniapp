@@ -7,7 +7,7 @@ from app.database import get_db
 from app.deps import get_current_user, require_approved_member
 from app.models import Match, MatchSignup, Player, TeamMember, User
 from app.schemas import MatchIn, MatchOut, SignupIn, SignupOut
-from app.services.matches import mark_finished_matches, mark_match_finished_if_needed
+from app.services.matches import as_app_time, mark_finished_matches, mark_match_finished_if_needed
 
 router = APIRouter(prefix="/matches", tags=["matches"])
 
@@ -52,8 +52,8 @@ def create_match_from_miniapp(
         title=payload.title,
         opponent=payload.opponent,
         location=payload.location,
-        start_time=payload.start_time,
-        signup_deadline=payload.signup_deadline,
+        start_time=as_app_time(payload.start_time),
+        signup_deadline=as_app_time(payload.signup_deadline),
         capacity=payload.capacity,
         description=payload.description,
         status="open",

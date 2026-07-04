@@ -9,7 +9,7 @@ from app.database import get_db
 from app.deps import get_current_admin
 from app.models import AdminUser, AuditLog, JoinRequest, Match, MatchSignup, Player, TeamMember
 from app.schemas import MatchIn, MatchOut
-from app.services.matches import mark_finished_matches
+from app.services.matches import as_app_time, mark_finished_matches
 
 router = APIRouter(prefix="/admin", tags=["admin"], dependencies=[Depends(get_current_admin)])
 
@@ -119,7 +119,10 @@ def create_match(
     admin: AdminUser = Depends(get_current_admin),
     db: Session = Depends(get_db),
 ) -> Match:
-    match = Match(team_id=1, **payload.model_dump())
+    data = payload.model_dump()
+    data["start_time"] = as_app_time(data["start_time"])
+    data["signup_deadline"] = as_app_time(data["signup_deadline"])
+    match = Match(team_id=1, **data)
     db.add(match)
     db.flush()
     audit(db, admin, "create_match", "match", match.id)
@@ -138,7 +141,10 @@ def update_match(
     match = db.get(Match, match_id)
     if not match:
         raise HTTPException(status_code=404, detail="Match not found")
-    for key, value in payload.model_dump().items():
+    data = payload.model_dump()
+    data["start_time"] = as_app_time(data["start_time"])
+    data["signup_deadline"] = as_app_time(data["signup_deadline"])
+    for key, value in data.items():
         setattr(match, key, value)
     audit(db, admin, "update_match", "match", match.id)
     db.commit()
