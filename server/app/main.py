@@ -1,3 +1,6 @@
+from datetime import datetime
+import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -5,6 +8,9 @@ from app.admin_pages import router as admin_pages_router
 from app.bootstrap import seed_initial_data
 from app.database import Base, SessionLocal, engine
 from app.routers import admin, auth, join_requests, matches, me
+
+
+APP_STARTED_AT = datetime.now().astimezone().strftime("%Y-%m-%d %H:%M:%S %Z")
 
 
 def create_app() -> FastAPI:
@@ -26,6 +32,13 @@ def create_app() -> FastAPI:
     @app.get("/health")
     def health() -> dict:
         return {"ok": True}
+
+    @app.get("/api/version")
+    def api_version() -> dict:
+        return {
+            "version": os.getenv("APP_VERSION", "v1"),
+            "started_at": APP_STARTED_AT,
+        }
 
     app.include_router(auth.router, prefix="/api")
     app.include_router(me.router, prefix="/api")

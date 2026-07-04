@@ -5,11 +5,23 @@ Page({
     token: "",
     me: {} as any,
     memberStatusText: "未申请",
-    roleText: "-"
+    roleText: "-",
+    miniappBuildTime: getApp<IAppOption>().globalData.buildTime,
+    serverStartedAt: "获取中"
   },
   onShow() {
     this.setData({ token: getToken() });
     if (getToken()) this.loadMe();
+    this.loadVersion();
+  },
+  async loadVersion() {
+    try {
+      const version = await request<{ started_at: string }>("/version");
+      this.setData({ serverStartedAt: version.started_at || "未知" });
+    } catch (error) {
+      this.setData({ serverStartedAt: "获取失败" });
+      console.error(error);
+    }
   },
   async loadMe() {
     const me = await request<any>("/me");

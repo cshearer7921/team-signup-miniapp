@@ -10,4 +10,9 @@
     <button class="primary" bindtap="goJoin">入队申请</button>
     <button class="plain" bindtap="logout">退出登录</button>
   </view>
+  <view class="card">
+    <view class="title">版本信息</view>
+    <view class="muted">前端构建时间：{{miniappBuildTime}}</view>
+    <view class="muted">服务端启动时间：{{serverStartedAt}}</view>
+  </view>
 </view>

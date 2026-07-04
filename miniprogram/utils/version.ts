@@ -1,0 +1,1 @@
+export const MINIAPP_BUILD_TIME = "2026-07-04 13:30";

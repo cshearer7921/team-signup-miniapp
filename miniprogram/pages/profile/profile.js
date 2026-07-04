@@ -6,12 +6,25 @@ Page({
         token: "",
         me: {},
         memberStatusText: "未申请",
-        roleText: "-"
+        roleText: "-",
+        miniappBuildTime: getApp().globalData.buildTime,
+        serverStartedAt: "获取中"
     },
     onShow() {
         this.setData({ token: (0, request_1.getToken)() });
         if ((0, request_1.getToken)())
             this.loadMe();
+        this.loadVersion();
+    },
+    async loadVersion() {
+        try {
+            const version = await (0, request_1.request)("/version");
+            this.setData({ serverStartedAt: version.started_at || "未知" });
+        }
+        catch (error) {
+            this.setData({ serverStartedAt: "获取失败" });
+            console.error(error);
+        }
     },
     async loadMe() {
         const me = await (0, request_1.request)("/me");
