@@ -59,8 +59,7 @@
 
   <view class="bottom-safe"></view>
   <view class="bottom-bar" wx:if="{{match.status === 'open'}}">
-    <button class="bottom-button fee">¥</button>
-    <button class="bottom-button maybe" bindtap="signup" data-status="maybe">编辑出勤</button>
-    <button class="bottom-button signup" bindtap="signup" data-status="signed_up">录入数据</button>
+    <button class="bottom-button maybe" bindtap="chooseMaybeOrLeave">待定/请假</button>
+    <button class="bottom-button signup" bindtap="signup" data-status="signed_up">报名</button>
   </view>
 </view>

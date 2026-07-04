@@ -223,7 +223,7 @@
   right: 0;
   bottom: 0;
   display: grid;
-  grid-template-columns: 1fr 1.25fr 1.25fr;
+  grid-template-columns: 1fr 1fr;
   gap: 18rpx;
   padding: 18rpx 24rpx 28rpx;
   background: rgba(255, 255, 255, 0.96);
@@ -236,10 +236,6 @@
   border-radius: 41rpx;
   color: #fff;
   font-size: 30rpx;
-}
-
-.bottom-button.fee {
-  background: #8bc34a;
 }
 
 .bottom-button.maybe {

@@ -41,6 +41,18 @@ Page({
     },
     async signup(event) {
         const status = event.currentTarget.dataset.status;
+        await this.submitSignup(status);
+    },
+    chooseMaybeOrLeave() {
+        wx.showActionSheet({
+            itemList: ["待定", "请假"],
+            success: (res) => {
+                const status = res.tapIndex === 0 ? "maybe" : "leave";
+                this.submitSignup(status);
+            }
+        });
+    },
+    async submitSignup(status) {
         await (0, request_1.request)(`/matches/${this.data.id}/signup`, "POST", { status });
         wx.showToast({ title: "已提交", icon: "success" });
         this.load();
