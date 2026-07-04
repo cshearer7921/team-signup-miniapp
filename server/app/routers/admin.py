@@ -9,6 +9,7 @@ from app.database import get_db
 from app.deps import get_current_admin
 from app.models import AdminUser, AuditLog, JoinRequest, Match, MatchSignup, Player, TeamMember
 from app.schemas import MatchIn, MatchOut
+from app.services.matches import mark_finished_matches
 
 router = APIRouter(prefix="/admin", tags=["admin"], dependencies=[Depends(get_current_admin)])
 
@@ -147,6 +148,7 @@ def update_match(
 
 @router.get("/matches")
 def admin_matches(db: Session = Depends(get_db)) -> list[dict]:
+    mark_finished_matches(db)
     return [
         {"id": row.id, "title": row.title, "opponent": row.opponent, "location": row.location, "start_time": row.start_time, "status": row.status}
         for row in db.query(Match).order_by(Match.start_time.desc()).all()

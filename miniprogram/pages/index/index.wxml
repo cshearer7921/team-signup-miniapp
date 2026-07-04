@@ -26,6 +26,7 @@
     <view class="muted">对手：{{item.opponent || '待定'}}</view>
     <view class="muted">地点：{{item.location}}</view>
     <view class="muted">时间：{{item.start_time}}</view>
+    <view class="muted">状态：{{item.status_text}}</view>
     <view class="row">
       <text>报名 {{item.signup_counts.signed_up || 0}}</text>
       <text>请假 {{item.signup_counts.leave || 0}}</text>

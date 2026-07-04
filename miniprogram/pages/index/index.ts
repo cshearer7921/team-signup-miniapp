@@ -11,7 +11,11 @@ Page({
   },
   async loadMatches() {
     try {
-      const matches = await request<any[]>("/matches");
+      const rows = await request<any[]>("/matches");
+      const matches = rows.map((item) => ({
+        ...item,
+        status_text: matchStatusText(item.status)
+      }));
       this.setData({ matches });
     } catch (error) {
       console.error(error);
@@ -30,3 +34,13 @@ Page({
     wx.navigateTo({ url: `/pages/match-detail/match-detail?id=${event.currentTarget.dataset.id}` });
   }
 });
+
+function matchStatusText(status?: string): string {
+  const map: Record<string, string> = {
+    open: "开放报名",
+    finished: "已完成",
+    closed: "已关闭",
+    cancelled: "已取消"
+  };
+  return status ? map[status] || status : "-";
+}

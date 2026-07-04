@@ -4,13 +4,18 @@
     <view class="muted">对手：{{match.opponent || '待定'}}</view>
     <view class="muted">地点：{{match.location}}</view>
     <view class="muted">时间：{{match.start_time}}</view>
+    <view class="muted">状态：{{matchStatusText}}</view>
     <view class="muted">说明：{{match.description || '无'}}</view>
   </view>
-  <view class="card">
+  <view class="card" wx:if="{{match.status === 'open'}}">
     <view class="title">我的状态：{{statusText}}</view>
     <button class="primary" bindtap="signup" data-status="signed_up">报名</button>
     <button class="plain" bindtap="signup" data-status="maybe">待定</button>
     <button class="danger" bindtap="signup" data-status="leave">请假</button>
+  </view>
+  <view class="card" wx:else>
+    <view class="title">活动/比赛已完成</view>
+    <view class="muted">开始时间超过 2 小时后，系统会自动标记为已完成。</view>
   </view>
   <view class="card">
     <view class="title">报名名单</view>

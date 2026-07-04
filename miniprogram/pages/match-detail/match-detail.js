@@ -2,12 +2,19 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const request_1 = require("../../utils/request");
 const statusMap = { signed_up: "报名", leave: "请假", maybe: "待定" };
+const matchStatusMap = {
+    open: "开放报名",
+    finished: "已完成",
+    closed: "已关闭",
+    cancelled: "已取消"
+};
 Page({
     data: {
         id: 0,
         match: {},
         signups: [],
         statusMap,
+        matchStatusText: "",
         statusText: "未报名"
     },
     onLoad(query) {
@@ -20,6 +27,7 @@ Page({
         this.setData({
             match,
             signups,
+            matchStatusText: matchStatusMap[match.status] || match.status || "-",
             statusText: statusMap[match.my_signup_status] || "未报名"
         });
     },

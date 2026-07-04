@@ -96,7 +96,7 @@ function statusText(status){
   return ({pending:"待审核", approved:"已通过", rejected:"已拒绝"})[status] || status || "";
 }
 function matchStatusText(status){
-  return ({open:"开放报名", closed:"已关闭", cancelled:"已取消"})[status] || status || "";
+  return ({open:"开放报名", finished:"已完成", closed:"已关闭", cancelled:"已取消"})[status] || status || "";
 }
 function table(headers, rows){
   return `<table><thead><tr>${headers.map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${c ?? ""}</td>`).join("")}</tr>`).join("")}</tbody></table>`;

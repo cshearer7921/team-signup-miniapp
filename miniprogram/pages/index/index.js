@@ -13,7 +13,11 @@ Page({
     },
     async loadMatches() {
         try {
-            const matches = await (0, request_1.request)("/matches");
+            const rows = await (0, request_1.request)("/matches");
+            const matches = rows.map((item) => ({
+                ...item,
+                status_text: matchStatusText(item.status)
+            }));
             this.setData({ matches });
         }
         catch (error) {
@@ -33,3 +37,12 @@ Page({
         wx.navigateTo({ url: `/pages/match-detail/match-detail?id=${event.currentTarget.dataset.id}` });
     }
 });
+function matchStatusText(status) {
+    const map = {
+        open: "开放报名",
+        finished: "已完成",
+        closed: "已关闭",
+        cancelled: "已取消"
+    };
+    return status ? map[status] || status : "-";
+}

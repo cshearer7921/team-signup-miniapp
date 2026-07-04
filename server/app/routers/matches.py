@@ -7,6 +7,7 @@ from app.database import get_db
 from app.deps import get_current_user, require_approved_member
 from app.models import Match, MatchSignup, Player, TeamMember, User
 from app.schemas import MatchOut, SignupIn, SignupOut
+from app.services.matches import mark_finished_matches, mark_match_finished_if_needed
 
 router = APIRouter(prefix="/matches", tags=["matches"])
 
@@ -32,6 +33,7 @@ def list_matches(
     member = db.query(TeamMember).filter_by(user_id=user.id, status="approved").first()
     if not member:
         return []
+    mark_finished_matches(db)
     matches = db.query(Match).filter_by(team_id=member.team_id).order_by(Match.start_time.desc()).all()
     return [serialize_match(db, match, user.id) for match in matches]
 
@@ -43,6 +45,7 @@ def get_match(
     db: Session = Depends(get_db),
 ) -> MatchOut:
     match = db.get(Match, match_id)
+    match = mark_match_finished_if_needed(db, match)
     if not match:
         raise HTTPException(status_code=404, detail="Match not found")
     return serialize_match(db, match, user.id)
@@ -56,8 +59,9 @@ def signup_match(
     db: Session = Depends(get_db),
 ) -> MatchSignup:
     match = db.get(Match, match_id)
+    match = mark_match_finished_if_needed(db, match)
     if not match or match.status != "open":
-        raise HTTPException(status_code=404, detail="Match is not open")
+        raise HTTPException(status_code=400, detail="活动/比赛已结束，不能再报名")
     signup = db.query(MatchSignup).filter_by(match_id=match.id, user_id=user.id).first()
     if not signup:
         signup = MatchSignup(match_id=match.id, user_id=user.id, status=payload.status)
@@ -75,6 +79,7 @@ def match_signups(
     user: User = Depends(require_approved_member),
     db: Session = Depends(get_db),
 ) -> list[dict]:
+    mark_match_finished_if_needed(db, db.get(Match, match_id))
     rows = db.query(MatchSignup).filter_by(match_id=match_id).all()
     result = []
     for row in rows:
