@@ -10,7 +10,7 @@ Page({
             location: "",
             date: "",
             time: "",
-            capacity: "",
+            capacity: "22",
             description: ""
         }
     },
@@ -27,7 +27,7 @@ Page({
     async submit() {
         const form = this.data.form;
         if (!form.title || !form.location || !form.date || !form.time) {
-            wx.showToast({ title: "请填写必填项", icon: "none" });
+            wx.showToast({ title: "请补全名称、时间和地点", icon: "none" });
             return;
         }
         const capacity = form.capacity ? Number(form.capacity) : null;
@@ -46,14 +46,14 @@ Page({
                 description: form.description || null,
                 status: "open"
             });
-            wx.showToast({ title: "已发布", icon: "success" });
+            wx.showToast({ title: "已创建", icon: "success" });
             this.setData({
-                form: { title: "", opponent: "", location: "", date: "", time: "", capacity: "", description: "" }
+                form: { title: "", opponent: "", location: "", date: "", time: "", capacity: "22", description: "" }
             });
             wx.switchTab({ url: "/pages/index/index" });
         }
         catch (error) {
-            wx.showToast({ title: "发布失败", icon: "none" });
+            wx.showToast({ title: "创建失败", icon: "none" });
             console.error(error);
         }
         finally {

@@ -1,44 +1,237 @@
-.field-label {
-  font-size: 32rpx;
-  font-weight: 600;
-  color: #172033;
-  margin: 26rpx 0 6rpx;
-  line-height: 1.45;
+.create-page {
+  min-height: 100vh;
+  background: #f3f3f3;
+  padding-bottom: 132rpx;
 }
 
-.field-hint {
+.template-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14rpx;
+  height: 72rpx;
+  color: #5aa82e;
+  background: #e7f6d9;
+  font-size: 28rpx;
+}
+
+.template-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 50%;
+  color: #fff;
+  background: #75bd45;
+  font-size: 34rpx;
+  line-height: 28rpx;
+}
+
+.cover-card {
+  height: 230rpx;
+  margin: 20rpx 26rpx;
+  border-radius: 8rpx;
+  background: linear-gradient(135deg, #d3ee58 0%, #78c91e 100%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cover-icon {
+  font-size: 54rpx;
+  margin-bottom: 8rpx;
+}
+
+.cover-text {
   font-size: 26rpx;
-  color: #8a93a3;
-  line-height: 1.5;
-  margin-bottom: 10rpx;
 }
 
-.form-input,
-.picker-box {
+.section-card {
+  margin: 0 26rpx 16rpx;
+  background: #fff;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+
+.team-row,
+.form-row,
+.limit-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 92rpx;
+  padding: 0 22rpx;
+  border-bottom: 1rpx solid #eeeeee;
+}
+
+.team-row {
+  min-height: 104rpx;
+}
+
+.team-logo {
+  width: 74rpx;
+  height: 74rpx;
+  border-radius: 8rpx;
+  background: #eeeeee;
+  color: #ff6b1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  margin-right: 18rpx;
+}
+
+.team-lines {
+  flex: 1;
+}
+
+.team-line {
+  height: 22rpx;
+  background: #f0f0f0;
+  margin-bottom: 12rpx;
+  border-radius: 4rpx;
+}
+
+.team-line.short {
+  width: 68%;
+  margin-bottom: 0;
+}
+
+.team-name,
+.picker-value,
+.limit-label {
+  font-size: 30rpx;
+  color: #222;
+}
+
+.row-icon {
+  width: 44rpx;
+  color: #8a93a3;
+  font-size: 30rpx;
+  flex-shrink: 0;
+}
+
+.row-input {
   box-sizing: border-box;
-  width: 100%;
+  flex: 1;
+  height: 92rpx;
+  min-height: 92rpx;
+  max-height: 92rpx;
+  padding: 24rpx 0;
+  line-height: 44rpx;
+  font-size: 30rpx;
+  color: #222;
+}
+
+.row-placeholder {
+  position: absolute;
+  left: 66rpx;
+  right: 22rpx;
+  top: 24rpx;
+  pointer-events: none;
+  color: #8a93a3;
+  font-size: 30rpx;
+  line-height: 44rpx;
+}
+
+.picker-row picker {
+  flex: 1;
+}
+
+.fixed-row {
+  border-bottom: 0;
+}
+
+.chevron {
+  color: #7f8794;
+  font-size: 32rpx;
+  margin-left: 12rpx;
+}
+
+.notice-row {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  min-height: 210rpx;
+  padding: 24rpx 22rpx 0;
+}
+
+.notice-input {
+  flex: 1;
+  min-height: 170rpx;
+  line-height: 44rpx;
+  font-size: 30rpx;
+  color: #222;
+}
+
+.notice-placeholder {
+  position: absolute;
+  left: 66rpx;
+  right: 22rpx;
+  top: 24rpx;
+  pointer-events: none;
+  color: #555;
+  font-size: 30rpx;
+  line-height: 44rpx;
+}
+
+.history-link {
+  text-align: right;
+  color: #53627a;
+  font-size: 26rpx;
+  padding: 0 22rpx 20rpx;
+}
+
+.bottom-card {
+  margin-bottom: 0;
+}
+
+.limit-input {
+  margin-left: auto;
+  width: 120rpx;
   height: 84rpx;
   min-height: 84rpx;
-  line-height: 1.5;
-  padding: 18rpx 22rpx;
-  margin: 0;
+  max-height: 84rpx;
+  text-align: right;
+  line-height: 44rpx;
+  padding: 20rpx 0;
   font-size: 30rpx;
-  color: #172033;
-  background: #fff;
-  border: 1rpx solid #cbd3df;
-  border-radius: 10rpx;
+  color: #222;
 }
 
-.form-textarea {
-  box-sizing: border-box;
-  width: 100%;
-  min-height: 220rpx;
-  line-height: 1.5;
-  padding: 24rpx 22rpx;
-  margin: 0 0 28rpx;
-  font-size: 30rpx;
-  color: #172033;
-  background: #fff;
-  border: 1rpx solid #cbd3df;
-  border-radius: 10rpx;
+.limit-muted {
+  margin-left: auto;
+  color: #8a93a3;
+  font-size: 28rpx;
+}
+
+.divider {
+  height: 1rpx;
+  background: #eeeeee;
+  margin-left: 66rpx;
+}
+
+.submit-safe {
+  height: 112rpx;
+}
+
+.submit-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 18rpx 26rpx 28rpx;
+  background: rgba(243, 243, 243, 0.96);
+}
+
+.create-button {
+  height: 88rpx;
+  line-height: 88rpx;
+  border-radius: 44rpx;
+  color: #fff;
+  background: linear-gradient(90deg, #ff7a1a 0%, #ff4e2f 100%);
+  font-size: 32rpx;
 }

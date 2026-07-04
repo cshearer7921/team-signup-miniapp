@@ -1,37 +1,94 @@
-<view class="page">
-  <view class="card">
-    <view class="title">发起活动/比赛</view>
+<view class="create-page">
+  <view class="template-bar">
+    <text>以模板发起活动</text>
+    <text class="template-arrow">›</text>
+  </view>
 
-    <view class="field-label">活动名称</view>
-    <view class="field-hint">例如：周末友谊赛</view>
-    <textarea class="form-input" auto-height="{{false}}" maxlength="40" value="{{form.title}}" data-field="title" bindinput="onInput" />
+  <view class="cover-card">
+    <view class="cover-icon">⚽</view>
+    <view class="cover-text">选择封面图</view>
+  </view>
 
-    <view class="field-label">对手</view>
-    <view class="field-hint">可填写对手球队，暂未确定可留空</view>
-    <textarea class="form-input" auto-height="{{false}}" maxlength="40" value="{{form.opponent}}" data-field="opponent" bindinput="onInput" />
+  <view class="section-card">
+    <view class="team-row">
+      <view class="team-logo">云</view>
+      <view class="team-lines">
+        <view class="team-line"></view>
+        <view class="team-line short"></view>
+      </view>
+      <view class="team-name">云桥FC</view>
+      <view class="chevron">⌄</view>
+    </view>
+  </view>
 
-    <view class="field-label">地点</view>
-    <view class="field-hint">填写球场或集合地点</view>
-    <textarea class="form-input" auto-height="{{false}}" maxlength="80" value="{{form.location}}" data-field="location" bindinput="onInput" />
+  <view class="section-card">
+    <view class="form-row">
+      <view class="row-icon">☷</view>
+      <textarea class="row-input" auto-height="{{false}}" maxlength="40" value="{{form.title}}" data-field="title" bindinput="onInput" />
+      <view class="row-placeholder" wx:if="{{!form.title}}">活动名称，例如周末友谊赛</view>
+    </view>
 
-    <view class="field-label">日期</view>
-    <picker mode="date" value="{{form.date}}" bindchange="onDateChange">
-      <view class="picker-box">{{form.date || '请选择日期'}}</view>
-    </picker>
+    <view class="form-row">
+      <view class="row-icon">🏁</view>
+      <textarea class="row-input" auto-height="{{false}}" maxlength="40" value="{{form.opponent}}" data-field="opponent" bindinput="onInput" />
+      <view class="row-placeholder" wx:if="{{!form.opponent}}">对手球队，可不填</view>
+    </view>
 
-    <view class="field-label">时间</view>
-    <picker mode="time" value="{{form.time}}" bindchange="onTimeChange">
-      <view class="picker-box">{{form.time || '请选择时间'}}</view>
-    </picker>
+    <view class="form-row picker-row">
+      <view class="row-icon">📅</view>
+      <picker mode="date" value="{{form.date}}" bindchange="onDateChange">
+        <view class="picker-value">{{form.date || '活动日期'}}</view>
+      </picker>
+      <view class="chevron">⌄</view>
+    </view>
 
-    <view class="field-label">人数上限</view>
-    <view class="field-hint">可不填</view>
-    <textarea class="form-input" auto-height="{{false}}" maxlength="3" value="{{form.capacity}}" data-field="capacity" bindinput="onInput" />
+    <view class="form-row picker-row">
+      <view class="row-icon">⏰</view>
+      <picker mode="time" value="{{form.time}}" bindchange="onTimeChange">
+        <view class="picker-value">{{form.time || '活动时间'}}</view>
+      </picker>
+      <view class="chevron">⌄</view>
+    </view>
 
-    <view class="field-label">说明</view>
-    <view class="field-hint">可填写赛制、费用、装备要求等</view>
-    <textarea class="form-textarea" value="{{form.description}}" data-field="description" bindinput="onInput" />
+    <view class="form-row">
+      <view class="row-icon">📍</view>
+      <textarea class="row-input" auto-height="{{false}}" maxlength="80" value="{{form.location}}" data-field="location" bindinput="onInput" />
+      <view class="row-placeholder" wx:if="{{!form.location}}">活动地点</view>
+    </view>
 
-    <button class="primary" loading="{{submitting}}" bindtap="submit">发布活动</button>
+    <view class="form-row fixed-row">
+      <view class="row-icon">☰</view>
+      <view class="picker-value">足球</view>
+      <view class="chevron">⌄</view>
+    </view>
+  </view>
+
+  <view class="section-card">
+    <view class="notice-row">
+      <view class="row-icon">▣</view>
+      <textarea class="notice-input" maxlength="300" value="{{form.description}}" data-field="description" bindinput="onInput" />
+      <view class="notice-placeholder" wx:if="{{!form.description}}">云桥FC活动，暂定，看人数</view>
+    </view>
+    <view class="history-link">历史公告</view>
+  </view>
+
+  <view class="section-card bottom-card">
+    <view class="limit-row">
+      <view class="row-icon">♧</view>
+      <view class="limit-label">人数上限</view>
+      <textarea class="limit-input" auto-height="{{false}}" maxlength="3" value="{{form.capacity}}" data-field="capacity" bindinput="onInput" />
+    </view>
+    <view class="divider"></view>
+    <view class="limit-row">
+      <view class="row-icon">⚑</view>
+      <view class="limit-label">分队</view>
+      <view class="limit-muted">创建后再安排</view>
+      <view class="chevron">›</view>
+    </view>
+  </view>
+
+  <view class="submit-safe"></view>
+  <view class="submit-bar">
+    <button class="create-button" loading="{{submitting}}" bindtap="submit">创建</button>
   </view>
 </view>
