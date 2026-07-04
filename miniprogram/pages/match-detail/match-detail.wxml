@@ -1,27 +1,66 @@
-<view class="page">
-  <view class="card">
-    <view class="title">{{match.title}}</view>
-    <view class="muted">对手：{{match.opponent || '待定'}}</view>
-    <view class="muted">地点：{{match.location}}</view>
-    <view class="muted">时间：{{match.start_time}}</view>
-    <view class="muted">状态：{{matchStatusText}}</view>
-    <view class="muted">说明：{{match.description || '无'}}</view>
+<view class="detail-page">
+  <view class="hero-card">
+    <view class="hero-title">{{match.title || '活动报名'}}</view>
+    <view class="info-row">
+      <text class="info-icon">▦</text>
+      <text>{{displayTime}}</text>
+      <text class="view-count">◎ {{signupStats.total}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-icon">◎</text>
+      <text>{{match.location || '活动地点待定'}}</text>
+      <text class="side-link">场地导航›</text>
+    </view>
+    <view class="info-row">
+      <text class="info-icon">◇</text>
+      <text>足球/平台可见</text>
+    </view>
+    <view class="info-row">
+      <text class="info-icon">¥</text>
+      <text>收费：自定义收费</text>
+    </view>
+    <view class="organizer-row">
+      <view class="avatar small">{{organizerInitial}}</view>
+      <view>
+        <view class="organizer-name">{{organizerName}}</view>
+        <view class="stars">★★★★★</view>
+      </view>
+    </view>
+    <view class="desc">{{match.description || '云桥FC活动，暂定，看人数'}}</view>
   </view>
-  <view class="card" wx:if="{{match.status === 'open'}}">
-    <view class="title">我的状态：{{statusText}}</view>
-    <button class="primary" bindtap="signup" data-status="signed_up">报名</button>
-    <button class="plain" bindtap="signup" data-status="maybe">待定</button>
-    <button class="danger" bindtap="signup" data-status="leave">请假</button>
+
+  <view class="signup-panel">
+    <view class="stats-tabs">
+      <view class="stats-tab active">报名 <text>{{signupStats.signed_up}}/{{match.capacity || '不限'}}</text></view>
+      <view class="stats-tab">待定 <text>{{signupStats.maybe}}</text></view>
+      <view class="stats-tab">请假 <text>{{signupStats.leave}}</text></view>
+      <view class="stats-tab">出勤 <text>{{signupStats.signed_up}}</text></view>
+      <view class="tab-arrow">›</view>
+    </view>
+
+    <view class="member-grid">
+      <view wx:for="{{displayMembers}}" wx:key="key" class="member-card">
+        <view class="avatar">{{item.initial}}</view>
+        <view class="member-name">{{item.name}}</view>
+        <view class="member-badge {{item.status}}">{{item.statusText}}</view>
+      </view>
+    </view>
   </view>
-  <view class="card" wx:else>
-    <view class="title">活动/比赛已完成</view>
+
+  <view class="follow-row">
+    <text>关注「云桥FC」服务号，接收活动变更消息！</text>
+    <text class="follow-link">马上关注</text>
+  </view>
+
+  <view class="status-card" wx:if="{{match.status !== 'open'}}">
+    <view class="status-title">活动/比赛已完成</view>
     <view class="muted">开始时间超过 2 小时后，系统会自动标记为已完成。</view>
   </view>
-  <view class="card">
-    <view class="title">报名名单</view>
-    <view wx:for="{{signups}}" wx:key="user_id" class="row">
-      <text>{{item.player_name}}</text>
-      <text>{{statusMap[item.status]}}</text>
-    </view>
+
+  <view class="bottom-safe"></view>
+  <view class="bottom-bar" wx:if="{{match.status === 'open'}}">
+    <button class="bottom-button fee">¥</button>
+    <button class="bottom-button maybe" bindtap="signup" data-status="maybe">编辑出勤</button>
+    <button class="bottom-button signup" bindtap="signup" data-status="signed_up">录入数据</button>
   </view>
 </view>
