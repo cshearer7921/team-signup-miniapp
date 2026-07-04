@@ -1,11 +1,37 @@
 <view class="page">
   <view class="card">
     <view class="title">发起活动/比赛</view>
-    <view class="muted">V1 版本由队长在 Web 管理后台创建活动，创建后队员可在首页报名、请假或待定。</view>
-    <button class="primary" bindtap="copyAdminUrl">复制后台地址</button>
-  </view>
-  <view class="card">
-    <view class="title">后台地址</view>
-    <view class="muted">https://cshearer.bbroot.com/admin-ui</view>
+
+    <view class="field-label">活动名称</view>
+    <view class="field-hint">例如：周末友谊赛</view>
+    <textarea class="form-input" auto-height="{{false}}" maxlength="40" value="{{form.title}}" data-field="title" bindinput="onInput" />
+
+    <view class="field-label">对手</view>
+    <view class="field-hint">可填写对手球队，暂未确定可留空</view>
+    <textarea class="form-input" auto-height="{{false}}" maxlength="40" value="{{form.opponent}}" data-field="opponent" bindinput="onInput" />
+
+    <view class="field-label">地点</view>
+    <view class="field-hint">填写球场或集合地点</view>
+    <textarea class="form-input" auto-height="{{false}}" maxlength="80" value="{{form.location}}" data-field="location" bindinput="onInput" />
+
+    <view class="field-label">日期</view>
+    <picker mode="date" value="{{form.date}}" bindchange="onDateChange">
+      <view class="picker-box">{{form.date || '请选择日期'}}</view>
+    </picker>
+
+    <view class="field-label">时间</view>
+    <picker mode="time" value="{{form.time}}" bindchange="onTimeChange">
+      <view class="picker-box">{{form.time || '请选择时间'}}</view>
+    </picker>
+
+    <view class="field-label">人数上限</view>
+    <view class="field-hint">可不填</view>
+    <textarea class="form-input" auto-height="{{false}}" maxlength="3" value="{{form.capacity}}" data-field="capacity" bindinput="onInput" />
+
+    <view class="field-label">说明</view>
+    <view class="field-hint">可填写赛制、费用、装备要求等</view>
+    <textarea class="form-textarea" value="{{form.description}}" data-field="description" bindinput="onInput" />
+
+    <button class="primary" loading="{{submitting}}" bindtap="submit">发布活动</button>
   </view>
 </view>

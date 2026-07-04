@@ -109,3 +109,39 @@ def test_match_auto_finished_after_two_hours():
             headers=headers,
         )
         assert signup.status_code == 400
+
+
+def test_approved_member_can_create_match_from_miniapp():
+    from fastapi.testclient import TestClient
+
+    with TestClient(app) as client:
+        login = client.post("/api/auth/wechat-login", json={"code": "user_c", "nickname": "球员C"})
+        token = login.json()["access_token"]
+        headers = {"Authorization": f"Bearer {token}"}
+        client.post(
+            "/api/join-requests",
+            json={"name": "球员C", "phone": "13700000000", "position": "前锋", "jersey_number": "9"},
+            headers=headers,
+        )
+        admin_login = client.post("/api/auth/admin-login?username=admin&password=admin123")
+        admin_headers = {"Authorization": f"Bearer {admin_login.json()['access_token']}"}
+        pending = client.get("/api/admin/join-requests", headers=admin_headers).json()
+        request_id = next(item["id"] for item in pending if item["name"] == "球员C")
+        client.post(f"/api/admin/join-requests/{request_id}/approve", headers=admin_headers)
+
+        created = client.post(
+            "/api/matches",
+            json={
+                "title": "手机端发起活动",
+                "opponent": "社区队",
+                "location": "云桥球场",
+                "start_time": "2026-08-01T19:30:00",
+                "capacity": 18,
+                "description": "手机端创建",
+                "status": "open",
+            },
+            headers=headers,
+        )
+        assert created.status_code == 200
+        assert created.json()["title"] == "手机端发起活动"
+        assert created.json()["status"] == "open"

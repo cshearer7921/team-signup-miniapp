@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 from app.database import get_db
 from app.deps import get_current_user, require_approved_member
 from app.models import Match, MatchSignup, Player, TeamMember, User
-from app.schemas import MatchOut, SignupIn, SignupOut
+from app.schemas import MatchIn, MatchOut, SignupIn, SignupOut
 from app.services.matches import mark_finished_matches, mark_match_finished_if_needed
 
 router = APIRouter(prefix="/matches", tags=["matches"])
@@ -36,6 +36,32 @@ def list_matches(
     mark_finished_matches(db)
     matches = db.query(Match).filter_by(team_id=member.team_id).order_by(Match.start_time.desc()).all()
     return [serialize_match(db, match, user.id) for match in matches]
+
+
+@router.post("", response_model=MatchOut)
+def create_match_from_miniapp(
+    payload: MatchIn,
+    user: User = Depends(require_approved_member),
+    db: Session = Depends(get_db),
+) -> MatchOut:
+    member = db.query(TeamMember).filter_by(user_id=user.id, status="approved").first()
+    if not member:
+        raise HTTPException(status_code=403, detail="请先通过入队审核")
+    match = Match(
+        team_id=member.team_id,
+        title=payload.title,
+        opponent=payload.opponent,
+        location=payload.location,
+        start_time=payload.start_time,
+        signup_deadline=payload.signup_deadline,
+        capacity=payload.capacity,
+        description=payload.description,
+        status="open",
+    )
+    db.add(match)
+    db.commit()
+    db.refresh(match)
+    return serialize_match(db, match, user.id)
 
 
 @router.get("/{match_id}", response_model=MatchOut)
